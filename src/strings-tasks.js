@@ -43,10 +43,10 @@ getStringLength('oinonoi');
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  if (typeof value !== 'string') {
-    return false;
+  if (typeof value === 'string' || value instanceof String) {
+    return true;
   }
-  return true;
+  return false;
 }
 isString('jjok');
 /**
@@ -243,10 +243,12 @@ endsWith('hello world', 'hello');
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  const min = minutes.toString().padStart(2, '0');
+  const sec = seconds.toString().padStart(2, '0');
+  return `${min}:${sec}`;
 }
-
+formatTime(5, 6);
 /**
  * Returns a string in reverse order.
  *
@@ -311,10 +313,18 @@ containsSubstring('hohoho', 'ho');
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const string = str.split('');
+  const arr = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+  let count = 0;
+  for (let i = 0; i < string.length; i += 1) {
+    if (arr.includes(string[i])) {
+      count += 1;
+    }
+  }
+  return count;
 }
-
+countVowels('asdfgquwop');
 /**
  * Returns true if the string is a palindrome; otherwise false.
  * https://en.wikipedia.org/wiki/Palindrome
