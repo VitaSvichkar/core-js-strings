@@ -338,10 +338,11 @@ countVowels('asdfgquwop');
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const reverseStr = str.split('').reverse().join('');
+  return reverseStr === str;
 }
-
+isPalindrome('madam');
 /**
  * Find the longest word in the sentence. If there are multiple longest words,
  * the function returns the first one encountered.
@@ -391,10 +392,22 @@ reverseWords('yyyuuu ooopp');
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  let change = '';
+  for (let i = 0; i < str.length; i += 1) {
+    if (str[i] === str[i].toUpperCase()) {
+      const itemLower = str[i].toLowerCase();
+      change += itemLower;
+    } else if (str[i] === str[i].toLowerCase()) {
+      const itemUpper = str[i].toUpperCase();
+      change += itemUpper;
+    } else {
+      change += str[i];
+    }
+  }
+  return change;
 }
-
+invertCase('Hello, World!');
 /**
  * Returns the result of string template and given parameters firstName and lastName.
  * Please do not use concatenation, use template string :
@@ -426,7 +439,7 @@ getStringFromTemplate('John', 'Doe');
 function extractNameFromTemplate(value) {
   return value.slice(7, -1);
 }
-extractNameFromTemplate('Hello, Viktoriia');
+extractNameFromTemplate('Hello, John Doe!');
 /**
  * Remove the first and last angle brackets from tag string
  *
@@ -457,10 +470,12 @@ unbracketTag('<div>');
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  const reg = str.replace(/;/g, ' ');
+  const arr = reg.split(' ');
+  return arr;
 }
-
+extractEmails('angus.young@gmail.com');
 /**
  * Encode specified string with ROT13 cipher
  * See details:  https://en.wikipedia.org/wiki/ROT13
